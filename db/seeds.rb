@@ -1,19 +1,23 @@
 require 'httparty'
 
-namespace :seed do
-  desc "Seed dog breed images"
-  task breed_images: :environment do
-    fetch_and_seed_breed_images
-  end
+# API endpoint
+url = "https://dog.ceo/api/breeds/list/all"
 
-  def fetch_and_seed_breed_images
-    Breed.all.each do |breed|
-      response = HTTParty.get("https://dog.ceo/api/breed/#{breed.name}/images")
-      urls = response.parsed_response["message"]
+# Fetch the data
+response = HTTParty.get(url)
 
-      urls.each do |url|
-        breed.breed_images.create(url: url)
-      end
+if response.code == 200 && response['status'] == 'success'
+  breeds_data = response['message']
+
+  breeds_data.each do |breed_name, sub_breeds|
+    breed = Breed.create!(name: breed_name)
+
+    sub_breeds.each do |sub_breed_name|
+      SubBreed.create!(name: sub_breed_name, breed: breed)
     end
   end
+
+  puts "Successfully populated the database with breeds and sub-breeds."
+else
+  puts "Failed to fetch data from the Dog API. HTTP Status: #{response.code}"
 end
