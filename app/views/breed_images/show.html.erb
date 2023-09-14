@@ -1,0 +1,9 @@
+<h1>Breed Image</h1>
+
+<div>
+  <%= image_tag @breed_image.url %>
+  <p><strong>Breed:</strong> <%= @breed_image.breed.name %></p>
+</div>
+
+<%= link_to 'Back to All Images', breed_images_path %>
+<%= link_to 'Get a Random Image', random_breed_image_path %>

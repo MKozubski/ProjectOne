@@ -1,0 +1,10 @@
+<h1>Random Dog Image</h1>
+
+<% if @breed_image %>
+  <%= image_tag @breed_image.url %>
+  <p>Breed: <%= @breed_image.breed.name %></p>
+<% else %>
+  <p>No images available.</p>
+<% end %>
+
+<%= button_to 'Get another random image', random_breed_images_path, method: :get %>

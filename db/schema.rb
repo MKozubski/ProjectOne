@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_14_002757) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_14_015130) do
+  create_table "breed_images", force: :cascade do |t|
+    t.string "url"
+    t.integer "breed_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["breed_id"], name: "index_breed_images_on_breed_id"
+  end
+
   create_table "breeds", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -25,5 +33,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_14_002757) do
     t.index ["breed_id"], name: "index_sub_breeds_on_breed_id"
   end
 
+  add_foreign_key "breed_images", "breeds"
   add_foreign_key "sub_breeds", "breeds"
 end

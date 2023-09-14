@@ -1,0 +1,2 @@
+module BreedImagesHelper
+end
