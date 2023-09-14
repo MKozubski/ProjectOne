@@ -1,7 +1,23 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+require 'httparty'
+
+# API endpoint
+url = "https://dog.ceo/api/breeds/list/all"
+
+# Fetch the data
+response = HTTParty.get(url)
+
+if response.code == 200 && response['status'] == 'success'
+  breeds_data = response['message']
+
+  breeds_data.each do |breed_name, sub_breeds|
+    breed = Breed.create!(name: breed_name)
+
+    sub_breeds.each do |sub_breed_name|
+      SubBreed.create!(name: sub_breed_name, breed: breed)
+    end
+  end
+
+  puts "Successfully populated the database with breeds and sub-breeds."
+else
+  puts "Failed to fetch data from the Dog API. HTTP Status: #{response.code}"
+end
