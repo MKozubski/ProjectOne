@@ -9,8 +9,32 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
+  <style>
+      /* Apply CSS to create an inline list */
+      ul.inline-list {
+          list-style-type: none;
+          padding: 0;
+          display: inline;
+      }
 
+      ul.inline-list li {
+          display: inline;
+          border: 2px solid #964B00;
+          margin-left: 0px;
+          margin-right: 0px;
+          padding-left: 4px;
+          padding-right: 4px;
+          background: #DAA06D;
+      }
+  </style>
   <body>
+  <header style="background: #964B00; padding: 5px; text-align: center;"><h1>Dogs "R" Us</h1></header>
+  <nav>
+    <ul class="inline-list">
+      <li><%= link_to 'Home', root_path %></li><li><%= link_to 'Random Image', breed_images_path, method: :get %></li>
+    </ul>
+  </nav>
     <%= yield %>
+  <footer style="background: #964B00; padding: 5px; text-align: center; margin-top: 10px;"><p>&copy; 2030 GemCraft</p></footer>
   </body>
 </html>
