@@ -1,0 +1,21 @@
+<%= form_with url: search_breeds_path, method: :get, local: true do |f| %>
+  <%= f.label :breed_name, "Search for a Breed:" %>
+  <%= f.text_field :breed_name %>
+  <%= f.submit "Search" %>
+<% end %>
+
+<% if @breed %>
+  <h2><%= @breed.name %></h2>
+
+  <h3>Sub-breeds:</h3>
+  <ul>
+    <% @sub_breeds.each do |sub_breed| %>
+      <li><%= sub_breed.name %></li>
+    <% end %>
+  </ul>
+
+  <% if @random_image %>
+    <h3>Random Image:</h3>
+    <%= image_tag @random_image.url %>
+  <% end %>
+<% end %>

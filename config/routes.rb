@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   get 'about/index'
-  resources :breeds, only: [:index]
+  resources :breeds, only: [:index] do
+    collection do
+      get :search
+    end
+  end
 
   root 'breeds#index'
 
