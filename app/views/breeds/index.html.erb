@@ -1,6 +1,10 @@
 <% @breeds.each do |breed| %>
   <h1><%= breed.name.capitalize %></h1>
   <% breed.sub_breeds.each do |sub_breed| %>
-    <p><%= sub_breed.name.capitalize %></p>
+  <ul>
+    <li><%= sub_breed.name.capitalize %></li>
+  </ul>
   <% end %>
 <% end %>
+
+<%= paginate @breeds %>
