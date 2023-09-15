@@ -10,21 +10,37 @@
     <%= javascript_importmap_tags %>
   </head>
   <style>
-      /* Apply CSS to create an inline list */
+      /* Updated navigation styles */
       ul.inline-list {
           list-style-type: none;
           padding: 0;
-          display: inline;
+          margin: 0;
+          display: flex;
+          justify-content: center;
+          gap: 10px;
+          background-color: #DAA06D;
+          border: 2px solid #964B00;
+          border-radius: 5px;
       }
 
       ul.inline-list li {
-          display: inline;
-          border: 2px solid #964B00;
-          margin-left: 0px;
-          margin-right: 0px;
-          padding-left: 4px;
-          padding-right: 4px;
-          background: #DAA06D;
+          padding: 5px 15px;
+          border-radius: 3px;
+          transition: background-color 0.3s ease;
+      }
+
+      ul.inline-list li:hover {
+          background-color: #F1C2A5;
+      }
+
+      ul.inline-list li a {
+          text-decoration: none;
+          color: #964B00;
+          font-weight: bold;
+      }
+
+      ul.inline-list li a:hover {
+          color: #702E00;
       }
   </style>
   <body>
