@@ -18,4 +18,7 @@
     <h3>Random Image:</h3>
     <%= image_tag @random_image.url %>
   <% end %>
+<% else %>
+  <!-- Handle the case where no breed is found -->
+  <p>No breed found by that name.</p>
 <% end %>
