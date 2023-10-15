@@ -1,2 +1,94 @@
-<h1>About#index</h1>
-<p>Find me in app/views/about/index.html.erb</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>About Dog Breeds Web Application</title>
+</head>
+<body>
+  <h1>About Dog Breeds Web Application</h1>
+  <p>We're happy you're here because the Dog Breeds Web Application is a platform for 
+  learning about a variety of dog breeds and their sub-breeds. Our program connects to
+   outside data sources and arranges the data for your benefit.</p>
+
+  <h2>Data Sources</h2>
+  <p>We obtain data from an external API endpoint that offers thorough details 
+  about different dog breeds. This API provides information on breed names and the
+   corresponding sub-breeds.</p>
+
+  <h2>Data Structure</h2>
+  <p>The data retrieved from the Dog API is structured in a JSON format. 
+  The primary key is the breed name, and its value is an array. This array contains
+   names of the sub-breeds if any. If a breed has no sub-breed, the array is empty.</p>
+
+  <p>Example:
+    {
+        "affenpinscher": [],
+        "bulldog": ["boston", "english", "french"],
+        ...
+    }
+  </p>
+
+  <p>Our database consists of two main tables:</p>
+  <ul>
+    <li><strong>Breeds Table:</strong></li>
+  </ul>
+  <table border="1" style="width:50%">
+    <tr>
+      <th>Column</th>
+      <th>Data Type</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>id</td>
+      <td>Integer (Primary Key)</td>
+      <td>Unique identifier for the breed.</td>
+    </tr>
+    <tr>
+      <td>name</td>
+      <td>String</td>
+      <td>Name of the breed.</td>
+    </tr>
+  </table>
+
+  <ul>
+    <li><strong>SubBreeds Table:</strong></li>
+  </ul>
+  <table border="1" style="width:50%">
+    <tr>
+      <th>Column</th>
+      <th>Data Type</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>id</td>
+      <td>Integer (Primary Key)</td>
+      <td>Unique identifier for the sub-breed.</td>
+    </tr>
+    <tr>
+      <td>name</td>
+      <td>String</td>
+      <td>Name of the sub-breed.</td>
+    </tr>
+    <tr>
+      <td>breed_id</td>
+      <td>Integer (Foreign Key)</td>
+      <td>Relates the sub-breed to its parent breed (foreign key to Breeds table).</td>
+    </tr>
+  </table>
+
+  <h2>Integration of Data</h2>
+  <p>The primary source of data is the Dog API, which offers a catalog of breeds
+   and their respective sub-breeds. This data lays the foundation of our application, 
+   presenting users with a hierarchical structure of canine variety. Integrating this 
+   data into our platform, we aim to offer users the opportunity to explore and delve into the
+ nuances of each breed and sub-breed, ensuring an informative and comprehensive browsing experience. 
+ By utilizing the Dog API, our application promises a rich and detailed view into the captivating world of
+  dog breeds, presenting each one's unique characteristics and distinctions.</p>
+
+  <h2>Data Initialization</h2>
+  <p>We populate our database by fetching data from the Dog API and processing it using a seed script.
+   The script creates records for each breed and their associated sub-breeds, ensuring that the 
+   information is up-to-date and accurate.</p>
+
+  
+</body>
+</html>

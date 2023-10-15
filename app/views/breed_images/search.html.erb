@@ -1,17 +1,17 @@
 <h1>Search Dog Images by Breed</h1>
 
-<%= form_tag search_breed_images_path, method: :get do %>
-  <%= label_tag :breed_name, 'Enter Breed Name:' %>
-  <%= text_field_tag :breed_name, params[:breed_name] %>
-  <%= submit_tag "Search" %>
-<% end %>
+<%= render 'search_form' %>
 
-<% if @breed_images.any? %>
-  <% @breed_images.each do |image| %>
-    <%= image_tag image.url %>
-    <p>Breed: <%= image.breed.name %></p>
-  <% end %>
-<%= paginate @breed_images %>
+<% if flash.now[:error].present? %>
+  <p style="color: red; font-weight: bold;"><%= flash.now[:error] %></p>
 <% else %>
-  <p>No images available for this breed.</p>
+  <% if @breed_images.any? %>
+    <% @breed_images.each do |image| %>
+      <%= image_tag image.url %>
+      <p>Breed: <%= image.breed.name %></p>
+    <% end %>
+    <%= paginate @breed_images %>
+  <% else %>
+    <p>No images available for this breed.</p>
+  <% end %>
 <% end %>

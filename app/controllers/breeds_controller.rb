@@ -2,6 +2,9 @@ class BreedsController < ApplicationController
   def index
     @breeds = Breed.includes(:sub_breeds).page(params[:page]).per(10)
   end
+  def show
+    @breed = Breed.find(params[:id])
+  end
 
   def search
     @breed = nil
