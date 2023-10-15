@@ -1,22 +1,46 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
-      <% @breeds.each do |breed| %>
+    <% @breeds.each do |breed| %>
+      <div class="col-md-4">
         <div class="card mb-3">
           <div class="card-body">
             <h1 class="card-title"><%= breed.name.capitalize %></h1>
-            <ul class="list-group">
-              <% breed.sub_breeds.each do |sub_breed| %>
-                <li class="list-group-item"><%= sub_breed.name.capitalize %></li>
-              <% end %>
-            </ul>
+
+            <!-- Button to toggle sub-breeds section -->
+            <% if breed.sub_breeds.any? %>
+              <button class="btn btn-primary toggle-button" onclick="toggleSubBreeds(<%= breed.id %>)">
+                Toggle Sub-breeds (<%= breed.sub_breeds.count %>)
+              </button>
+            <% else %>
+              <p>No sub-breeds available.</p>
+            <% end %>
+
+            <!-- Collapsible sub-breeds section -->
+            <div id="subBreeds_<%= breed.id %>" class="sub-breeds" style="display: none;">
+              <ul class="list-group">
+                <% breed.sub_breeds.each do |sub_breed| %>
+                  <li class="list-group-item"><%= sub_breed.name.capitalize %></li>
+                <% end %>
+              </ul>
+            </div>
           </div>
         </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
 </div>
 
 <div class="container text-center">
   <%= paginate @breeds %>
 </div>
+
+<script>
+  function toggleSubBreeds(breedId) {
+    var subBreeds = document.getElementById("subBreeds_" + breedId);
+    if (subBreeds.style.display === "none") {
+      subBreeds.style.display = "block";
+    } else {
+      subBreeds.style.display = "none";
+    }
+  }
+</script>

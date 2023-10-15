@@ -1,6 +1,6 @@
 class BreedsController < ApplicationController
   def index
-    @breeds = Breed.includes(:sub_breeds).page(params[:page]).per(10)
+    @breeds = Breed.includes(:sub_breeds).page(params[:page]).per(9)
   end
 
   def search
