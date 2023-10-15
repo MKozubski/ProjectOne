@@ -1,10 +1,11 @@
 <h1 class="display-4">Random Dog Image</h1>
 
 <% if @breed_image %>
-  <%= image_tag @breed_image.url, class: "img-fluid rounded" %>
+  <%= image_tag @breed_image.url, class: "img-fluid rounded", style: "max-width: 500px;" %>
   <p class="lead">Breed: <%= @breed_image.breed.name %></p>
 <% else %>
   <p class="alert alert-danger">No images available.</p>
 <% end %>
 
 <%= button_to 'Get another random image', breed_images_path, class: 'btn btn-primary', method: :get %>
+
