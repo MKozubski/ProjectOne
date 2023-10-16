@@ -1,0 +1,14 @@
+<h1><%= link_to @breed.name.capitalize %></h1>
+
+<p><strong>Number of Sub-Breeds:</strong> <%= @breed.sub_breeds.count %></p>
+
+<% if @breed.sub_breeds.any? %>
+  <h3>Sub-Breeds:</h3>
+  <ul>
+    <% @breed.sub_breeds.each do |sub_breed| %>
+      <li><%= sub_breed.name.capitalize %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No sub-breeds available for this breed.</p>
+<% end %>

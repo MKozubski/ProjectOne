@@ -1,0 +1,39 @@
+<h1>Breeds with <%= @breeds_count %> Sub-Breeds</h1>
+<%= form_with(url: hierarchical_search_path, method: :get, local: true) do |f| %>
+  <%= f.label :sub_breeds_count, "Number of Sub-Breeds:" %>
+  <%= f.select :sub_breeds_count, options_for_select([ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ,13, 14, 15]), prompt: "Select a count" %>
+  <%= f.submit "Search" %>
+<% end %>
+
+<% if @search_performed %>
+  <% if @breeds.any? %>
+    <table>
+      <thead>
+        <tr>
+          <th>Breed Name</th>
+          <th>Sub-Breeds</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @breeds.each do |breed| %>
+          <tr>
+            <td><%= link_to breed.name.capitalize, breed %></td>
+            <td>
+              <% if breed.sub_breeds.any? %>
+                <ul>
+                  <% breed.sub_breeds.each do |sub_breed| %>
+                    <li><%= sub_breed.name.capitalize %></li>
+                  <% end %>
+                </ul>
+              <% else %>
+                N/A
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>No breeds found with <%= @breeds_count %> sub-breeds.</p>
+  <% end %>
+<% end %>

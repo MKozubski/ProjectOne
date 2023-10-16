@@ -1,24 +1,94 @@
-<div class="container">
-  <h1 class="display-4">Welcome to DogsRUs</h1>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>About Dog Breeds Web Application</title>
+</head>
+<body>
+  <h1>About Dog Breeds Web Application</h1>
+  <p>We're happy you're here because the Dog Breeds Web Application is a platform for
+  learning about a variety of dog breeds and their sub-breeds. Our program connects to
+   outside data sources and arranges the data for your benefit.</p>
 
-  <p class="lead">Meet the Team Behind DogsRUs</p>
+  <h2>Data Sources</h2>
+  <p>We obtain data from an external API endpoint that offers thorough details
+  about different dog breeds. This API provides information on breed names and the
+   corresponding sub-breeds.</p>
 
-  <p>We are Team GemCraft, a group of passionate student developers, consisting of Michael and Jaspreet. Our journey began in a Rails development class, where we shared a common love for dogs and a desire to create something special.</p>
+  <h2>Data Structure</h2>
+  <p>The data retrieved from the Dog API is structured in a JSON format.
+  The primary key is the breed name, and its value is an array. This array contains
+   names of the sub-breeds if any. If a breed has no sub-breed, the array is empty.</p>
 
-  <p>DogsRUs is the result of our shared enthusiasm for dogs and our commitment to delivering a delightful experience for fellow dog enthusiasts. Our mission is to bring dog lovers closer to the wonderful world of canines in a fun and engaging way.</p>
+  <p>Example:
+    {
+        "affenpinscher": [],
+        "bulldog": ["boston", "english", "french"],
+        ...
+    }
+  </p>
 
-  <h2>What is DogsRUs?</h2>
-
-  <p>DogsRUs is your ultimate destination for all things canine. Our web application is designed with love and care to cater to your dog-loving spirit. Here's what you can expect from our app:</p>
+  <p>Our database consists of two main tables:</p>
+  <ul>
+    <li><strong>Breeds Table:</strong></li>
+  </ul>
+  <table border="1" style="width:50%">
+    <tr>
+      <th>Column</th>
+      <th>Data Type</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>id</td>
+      <td>Integer (Primary Key)</td>
+      <td>Unique identifier for the breed.</td>
+    </tr>
+    <tr>
+      <td>name</td>
+      <td>String</td>
+      <td>Name of the breed.</td>
+    </tr>
+  </table>
 
   <ul>
-    <li><strong>Comprehensive Dog Breed Database:</strong> Explore an extensive list of dog breeds, including their sub-breeds.</li>
-    <li><strong>Effortless Breed Search:</strong> Quickly find specific dog breeds by name.</li>
-    <li><strong>Random Dog Images:</strong> Enjoy a daily dose of adorable dog pictures to brighten your day.</li>
-    <li><strong>Customized Image Search:</strong> Search for dog images by selecting a breed of your choice.</li>
+    <li><strong>SubBreeds Table:</strong></li>
   </ul>
+  <table border="1" style="width:50%">
+    <tr>
+      <th>Column</th>
+      <th>Data Type</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>id</td>
+      <td>Integer (Primary Key)</td>
+      <td>Unique identifier for the sub-breed.</td>
+    </tr>
+    <tr>
+      <td>name</td>
+      <td>String</td>
+      <td>Name of the sub-breed.</td>
+    </tr>
+    <tr>
+      <td>breed_id</td>
+      <td>Integer (Foreign Key)</td>
+      <td>Relates the sub-breed to its parent breed (foreign key to Breeds table).</td>
+    </tr>
+  </table>
 
-  <p>We are thrilled to present DogsRUs as a user-friendly platform for all dog enthusiasts. Whether you're interested in learning about different dog breeds, finding adorable dog pictures, or simply exploring the canine world, DogsRUs is here for you.</p>
+  <h2>Integration of Data</h2>
+  <p>The primary source of data is the Dog API, which offers a catalog of breeds
+   and their respective sub-breeds. This data lays the foundation of our application,
+   presenting users with a hierarchical structure of canine variety. Integrating this
+   data into our platform, we aim to offer users the opportunity to explore and delve into the
+ nuances of each breed and sub-breed, ensuring an informative and comprehensive browsing experience.
+ By utilizing the Dog API, our application promises a rich and detailed view into the captivating world of
+  dog breeds, presenting each one's unique characteristics and distinctions.</p>
 
-  <p>Thank you for joining us on this journey through the world of dogs!</p>
-</div>
+  <h2>Data Initialization</h2>
+  <p>We populate our database by fetching data from the Dog API and processing it using a seed script.
+   The script creates records for each breed and their associated sub-breeds, ensuring that the
+   information is up-to-date and accurate.</p>
+
+
+</body>
+</html>
