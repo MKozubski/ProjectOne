@@ -12,6 +12,11 @@
     <p>Breed: <%= image.breed.name %></p>
   <% end %>
 <%= paginate @breed_images %>
+
+ <p><%= link_to "Back to Breed", @breed_images.first.breed %></p>
+  <p><%= link_to "Sub-Breeds", breed_sub_breeds_path(@breed_images.first.breed) %></p>
+<% else %>
+
 <% else %>
   <p>No images available for this breed.</p>
 <% end %>

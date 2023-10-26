@@ -4,8 +4,3 @@
   <%= submit_tag "Search" %>
 <% end %>
 
-<% if params[:breed_name].present? %>
-  <% if params[:breed_name].length < 3 || params[:breed_name].length > 15 %>
-    <p style="color: red; font-weight: bold;">Please enter a breed name with 3 to 15 characters.</p>
-  <% end %>
-<% end %>

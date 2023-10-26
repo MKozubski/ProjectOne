@@ -13,12 +13,17 @@ class BreedImagesController < ApplicationController
   def search
     if params[:breed_name].present?
       breed_name = params[:breed_name].downcase
-      @breed = Breed.find_by('name LIKE ?', "%#{breed_name}%")
-
-      if @breed
-        @breed_images = @breed.breed_images.page(params[:page]).per(10)
+      if breed_name.length.between?(3, 25)
+        @breed = Breed.find_by('name LIKE ?', "%#{breed_name}%")
+  
+        if @breed
+          @breed_images = @breed.breed_images.page(params[:page]).per(10)
+        else
+          flash.now[:error] = "Breed not found."
+          @breed_images = BreedImage.none
+        end
       else
-        flash.now[:error] = "Breed not found."
+        flash.now[:error] = "Breed name should be between 3 and 25 characters."
         @breed_images = BreedImage.none
       end
     else
@@ -26,6 +31,13 @@ class BreedImagesController < ApplicationController
       @breed_images = BreedImage.none
     end
   end
+  
+  
+  def show
+    @breed_image = BreedImage.find(params[:id])
+    @breed = @breed_image.breed
+  end
+
 
   private
 

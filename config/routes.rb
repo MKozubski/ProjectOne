@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     collection do
       get :search
     end
+    resources :sub_breeds, only: [:show]
   end
 
   root 'breeds#index'
